@@ -1,0 +1,6 @@
+server_name: localhost localhost:8000
+
+
+db_name: ormuco
+db_user: ormuco
+db_password: ormuco

@@ -1,0 +1,17 @@
+- hosts: lab_servers
+  remote_user: ubuntu
+  sudo: yes
+  vars_files:
+   - vars.yml
+  
+  tasks:
+   - name: install apache
+     apt: 
+       name: apache2
+       state: present
+       update-cache: yes
+   
+   - name: install mysql
+     apt: 
+       name: mysql-server
+       state: present  

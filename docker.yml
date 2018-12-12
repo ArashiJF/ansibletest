@@ -1,0 +1,49 @@
+- hosts: lab_servers
+  remote_user: ubuntu 
+  become: true
+  vars_files:
+   - vars.yml
+
+  tasks:
+  
+  - name: Install list of packages
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+
+  - name: Add Docker GPG key
+    apt_key: url=https://download.docker.com/linux/ubuntu/gpg state=present
+
+  - name: Add Docker APT repository
+    apt_repository:
+      repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+
+  - name: install docker ce
+    apt:
+     name: "{{ item }}"
+     state: present
+     update_cache: yes
+    with_items:
+     - docker-ce
+  
+  - name: install docker-py
+    pip:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+     - docker 
+
+  - name: copy git repository with the app to the remote instance
+    git:
+      repo: https://github.com/ArashiJF/simpleFlask.git
+      dest: /home/ubuntu/flaskapp
+      version: master
+  
+  - name: build docker image from dockerfile in flaskapp 
+    docker_image: name=simpleapp tag=test1 path=/home/ubuntu/flaskapp state=present
+    
