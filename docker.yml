@@ -52,4 +52,4 @@
       name: flaskapi
       image: simpleapp
       state: reloaded
-      publish_all_ports: yes
+      published_ports: 5000
