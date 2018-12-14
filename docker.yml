@@ -48,7 +48,7 @@
     docker_image: name=simpleapp tag=test1 path=/home/ubuntu/flaskapp state=present
 
   - name: start docker container with recently created image
-    command: docker run -p 5000:5000 simpleapp  
+    command: docker run -p 5000:5000 --name prueba simpleapp:test1  
   #- name: start container with flask inside
   #  docker_container:
   #    name: flaskapi
