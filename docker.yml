@@ -45,7 +45,7 @@
       version: master
   
   - name: build docker image from dockerfile in flaskapp 
-    docker_image: name=simpleapp tag=test1 path=/home/ubuntu/flaskapp state=present pull=false
+    docker_image: name=simpleapp tag=test1 path=/home/ubuntu/flaskapp state=present
     
   - name: start container with flask inside
     docker_container:
