@@ -50,6 +50,7 @@
   - name: start container with flask inside
     docker_container:
       name: flaskapi
-      image: simpleapp/test1
+      image: simpleapp
       state: present
+      pull: false
       published_ports: 5000
